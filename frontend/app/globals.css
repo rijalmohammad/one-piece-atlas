@@ -207,6 +207,11 @@ body:has(.topnav) {
 .msg-av.ai  { background: rgba(240,176,32,0.15); border: 1px solid rgba(240,176,32,0.28); color: var(--gold); }
 .msg-av.usr { background: rgba(20,55,130,0.5); border: 1px solid rgba(80,140,220,0.2); color: #7AAFDD; }
 .bubble { max-width: calc(100% - 32px); padding: 8px 11px; font-size: 12.5px; line-height: 1.55; }
+.bubble p { margin: 0 0 6px; }
+.bubble p:last-child { margin-bottom: 0; }
+.bubble ul { margin: 4px 0 6px 16px; padding: 0; }
+.bubble ul:last-child { margin-bottom: 0; }
+.bubble li { margin-bottom: 3px; }
 .msg.ai   .bubble { background: rgba(10,40,100,0.4); color: rgba(245,230,200,0.82); border: 1px solid rgba(240,176,32,0.08); border-radius: 2px 8px 8px 8px; }
 .msg.user .bubble { background: rgba(240,176,32,0.09); color: var(--parchment); border: 1px solid rgba(240,176,32,0.13); border-radius: 8px 2px 8px 8px; }
 .typing-dots { animation: blink 1.1s infinite; }
