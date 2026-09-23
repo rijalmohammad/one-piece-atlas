@@ -84,7 +84,7 @@ async def stream_answer(location_key: str, question: str, context_chunks: list[s
     )
 
     stream = get_groq().chat.completions.create(
-        model=os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile"),
+        model=os.getenv("GROQ_MODEL", "llama3-70b-8192"),
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": question},
@@ -111,7 +111,7 @@ async def stream_answer_global(subject: str, subject_type: str, question: str, c
     )
 
     stream = get_groq().chat.completions.create(
-        model=os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile"),
+        model=os.getenv("GROQ_MODEL", "llama3-70b-8192"),
         messages=[
             {"role": "system", "content": system_prompt},
             {"role": "user", "content": question},
