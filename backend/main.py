@@ -6,7 +6,7 @@ from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
-from retrieval import retrieve_context, retrieve_context_global, stream_answer, stream_answer_global
+from retrieval import retrieve_context, retrieve_context_global, retrieve_context_subject, stream_answer, stream_answer_global
 
 app = FastAPI(title="One Piece Lore API", version="0.1.0")
 
@@ -53,13 +53,16 @@ async def query(
 @app.get("/char-query")
 async def char_query(
     character: str = Query(...),
+    key: str       = Query(""),
     question: str  = Query(...),
 ):
     if not character.strip() or not question.strip():
         raise HTTPException(400, "character and question are required")
 
-    full_q = f"{character}: {question.strip()}"
-    chunks = retrieve_context_global(full_q, top_k=6)
+    if key.strip():
+        chunks = retrieve_context_subject(key.strip(), "character", question.strip())
+    else:
+        chunks = retrieve_context_global(f"{character}: {question.strip()}", top_k=6)
 
     async def generate():
         async for token in stream_answer_global(character, "characters", question.strip(), chunks):
@@ -71,13 +74,16 @@ async def char_query(
 @app.get("/fruit-query")
 async def fruit_query(
     fruit:    str = Query(...),
+    key: str      = Query(""),
     question: str = Query(...),
 ):
     if not fruit.strip() or not question.strip():
         raise HTTPException(400, "fruit and question are required")
 
-    full_q = f"{fruit} Devil Fruit: {question.strip()}"
-    chunks = retrieve_context_global(full_q, top_k=6)
+    if key.strip():
+        chunks = retrieve_context_subject(key.strip(), "devil_fruit", question.strip())
+    else:
+        chunks = retrieve_context_global(f"{fruit} Devil Fruit: {question.strip()}", top_k=6)
 
     async def generate():
         async for token in stream_answer_global(fruit, "Devil Fruits", question.strip(), chunks):

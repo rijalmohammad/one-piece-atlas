@@ -3,7 +3,7 @@ from typing import AsyncGenerator
 
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
-from qdrant_client.models import Filter, FieldCondition, MatchValue, Range
+from qdrant_client.models import Filter, FieldCondition, MatchValue, MatchAny, Range
 from groq import Groq
 
 COLLECTION_NAME = "one_piece_lore"
@@ -54,6 +54,21 @@ def retrieve_context_global(question: str, top_k: int = 6) -> list[str]:
     results = get_qdrant().search(
         collection_name=COLLECTION_NAME,
         query_vector=vec,
+        limit=top_k,
+    )
+    return [r.payload["text"] for r in results if r.payload.get("text")]
+
+
+def retrieve_context_subject(subject_key: str, entity_type: str, question: str, top_k: int = 6) -> list[str]:
+    """Search by subject_key for characters and devil fruits."""
+    vec = get_model().encode(question).tolist()
+    results = get_qdrant().search(
+        collection_name=COLLECTION_NAME,
+        query_vector=vec,
+        query_filter=Filter(must=[
+            FieldCondition(key="type", match=MatchValue(value=entity_type)),
+            FieldCondition(key="subject_key", match=MatchValue(value=subject_key)),
+        ]),
         limit=top_k,
     )
     return [r.payload["text"] for r in results if r.payload.get("text")]
