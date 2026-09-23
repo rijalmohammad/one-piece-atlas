@@ -14,7 +14,7 @@ import requests
 from bs4 import BeautifulSoup
 from sentence_transformers import SentenceTransformer
 from qdrant_client import QdrantClient
-from qdrant_client.models import VectorParams, Distance, PointStruct
+from qdrant_client.models import VectorParams, Distance, PointStruct, PayloadSchemaType
 
 load_dotenv()
 
@@ -220,6 +220,20 @@ def setup_collection(client: QdrantClient) -> None:
         print(f"Created collection '{COLLECTION_NAME}'")
     else:
         print(f"Using existing collection '{COLLECTION_NAME}'")
+
+    # Create payload indexes required for filtered queries
+    index_fields = [
+        ("location_key",  PayloadSchemaType.KEYWORD),
+        ("type",          PayloadSchemaType.KEYWORD),
+        ("subject_key",   PayloadSchemaType.KEYWORD),
+        ("chapter_start", PayloadSchemaType.INTEGER),
+    ]
+    for field, schema in index_fields:
+        try:
+            client.create_payload_index(COLLECTION_NAME, field_name=field, field_schema=schema)
+            print(f"  index: {field}")
+        except Exception:
+            pass  # index already exists
 
 
 def ingest_locations(model: SentenceTransformer, client: QdrantClient) -> int:
