@@ -6,7 +6,7 @@ from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
-from retrieval import retrieve_context, retrieve_context_global, retrieve_context_subject, stream_answer, stream_answer_global
+from retrieval import retrieve_context, retrieve_context_global, retrieve_context_subject, stream_answer, stream_answer_global, stream_answer_global_open
 
 app = FastAPI(title="One Piece Lore API", version="0.1.0")
 
@@ -25,6 +25,20 @@ app.add_middleware(
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+
+@app.get("/global-query")
+async def global_query(question: str = Query(...)):
+    if not question.strip():
+        raise HTTPException(400, "question is required")
+
+    chunks = retrieve_context_global(question.strip(), top_k=8)
+
+    async def generate():
+        async for token in stream_answer_global_open(question.strip(), chunks):
+            yield token
+
+    return StreamingResponse(generate(), media_type="text/event-stream")
 
 
 @app.get("/query")

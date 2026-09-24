@@ -67,8 +67,24 @@ LOCATION_PAGES: list[tuple[str, str, str, int, int]] = [
     ("amazonlily",           "Amazon_Lily",                "Summit War Saga",      514, 524),
     ("littleeastblue",       "Little_East_Blue_Arc",       "Filler",               426, 429),
     ("impeldown",            "Impel_Down",                 "Summit War Saga",      525, 549),
-    ("marineford",           "Marineford",                 "Marlineford Arc",      550, 580),
+    ("marineford",           "Marineford",                 "Marineford Arc",       550, 580),
     ("postwar",              "Post-War_Arc",               "Post-War",             581, 597),
+    # New World — Fish-Man Island Saga
+    ("fishmanisland",        "Fish-Man_Island",            "Fish-Man Island Arc",  598, 653),
+    # New World — Punk Hazard Arc
+    ("punkhazard",           "Punk_Hazard",                "Punk Hazard Arc",      654, 699),
+    # New World — Dressrosa Arc
+    ("dressrosa",            "Dressrosa",                  "Dressrosa Arc",        700, 801),
+    ("greenbit",             "Green_Bit",                  "Dressrosa Arc",        700, 801),
+    # New World — Zou Arc
+    ("zou",                  "Zou",                        "Zou Arc",              802, 824),
+    # New World — Whole Cake Island Arc
+    ("wholecakeisland",      "Whole_Cake_Island",          "Whole Cake Island Arc",825, 902),
+    # New World — Wano Arc
+    ("wano",                 "Wano_Country",               "Wano Arc",             909, 1057),
+    ("onigashima",           "Onigashima",                 "Wano Arc",             958, 1057),
+    # New World — Egghead Arc
+    ("egghead",              "Egghead_Island",             "Egghead Arc",         1058, 9999),
 ]
 
 # (key, wiki_slug)
@@ -110,6 +126,63 @@ CHARACTER_PAGES: list[tuple[str, str]] = [
     ("marco",       "Marco"),
     ("roger",       "Gol_D._Roger"),
     ("jinbe",       "Jinbe"),
+    # New World additions
+    ("yamato",      "Yamato"),
+    ("caesar",      "Caesar_Clown"),
+    ("momonosuke",  "Kozuki_Momonosuke"),
+    ("katakuri",    "Charlotte_Katakuri"),
+    ("kaido",       "Kaido"),
+    ("bigmom",      "Charlotte_Linlin"),
+    ("king",        "King_(Alber)"),
+    ("sabo",        "Sabo"),
+    ("vegapunk",    "Vegapunk"),
+]
+
+# (key, wiki_slug, arc_name)
+ARC_PAGES: list[tuple[str, str, str]] = [
+    # East Blue Saga
+    ("romance-dawn",        "Romance_Dawn_Arc",             "Romance Dawn Arc"),
+    ("orange-town",         "Orange_Town_Arc",              "Orange Town Arc"),
+    ("syrup-village",       "Syrup_Village_Arc",            "Syrup Village Arc"),
+    ("baratie",             "Baratie_Arc",                  "Baratie Arc"),
+    ("arlong-park",         "Arlong_Park_Arc",              "Arlong Park Arc"),
+    ("loguetown",           "Loguetown_Arc",                "Loguetown Arc"),
+    # Arabasta Saga
+    ("reverse-mountain",    "Reverse_Mountain_Arc",         "Reverse Mountain Arc"),
+    ("whisky-peak",         "Whisky_Peak_Arc",              "Whisky Peak Arc"),
+    ("little-garden",       "Little_Garden_Arc",            "Little Garden Arc"),
+    ("drum-island",         "Drum_Island_Arc",              "Drum Island Arc"),
+    ("arabasta",            "Arabasta_Arc",                 "Arabasta Arc"),
+    # Sky Island Saga
+    ("jaya",                "Jaya_Arc",                     "Jaya Arc"),
+    ("skypiea",             "Skypiea_Arc",                  "Skypiea Arc"),
+    # Water 7 Saga
+    ("long-ring",           "Long_Ring_Long_Land_Arc",      "Long Ring Long Land Arc"),
+    ("water-7",             "Water_7_Arc",                  "Water 7 Arc"),
+    ("enies-lobby",         "Enies_Lobby_Arc",              "Enies Lobby Arc"),
+    ("post-enies-lobby",    "Post-Enies_Lobby_Arc",         "Post-Enies Lobby Arc"),
+    # Thriller Bark Saga
+    ("thriller-bark",       "Thriller_Bark_Arc",            "Thriller Bark Arc"),
+    # Summit War Saga
+    ("sabaody",             "Sabaody_Archipelago_Arc",      "Sabaody Archipelago Arc"),
+    ("amazon-lily",         "Amazon_Lily_Arc",              "Amazon Lily Arc"),
+    ("impel-down",          "Impel_Down_Arc",               "Impel Down Arc"),
+    ("marineford",          "Marineford_Arc",               "Marineford Arc"),
+    ("post-war",            "Post-War_Arc",                 "Post-War Arc"),
+    # Fish-Man Island Saga
+    ("fish-man-island",     "Fish-Man_Island_Arc",          "Fish-Man Island Arc"),
+    # Punk Hazard Arc
+    ("punk-hazard",         "Punk_Hazard_Arc",              "Punk Hazard Arc"),
+    # Dressrosa Arc
+    ("dressrosa",           "Dressrosa_Arc",                "Dressrosa Arc"),
+    # Zou Arc
+    ("zou",                 "Zou_Arc",                      "Zou Arc"),
+    # Whole Cake Island Arc
+    ("whole-cake-island",   "Whole_Cake_Island_Arc",        "Whole Cake Island Arc"),
+    # Wano Country Arc
+    ("wano",                "Wano_Country_Arc",             "Wano Country Arc"),
+    # Egghead Arc
+    ("egghead",             "Egghead_Arc",                  "Egghead Arc"),
 ]
 
 # (key, wiki_slug)
@@ -145,6 +218,14 @@ FRUIT_PAGES: list[tuple[str, str]] = [
     ("yami_yami",        "Yami_Yami_no_Mi"),
     ("pika_pika",        "Pika_Pika_no_Mi"),
     ("magu_magu",        "Magu_Magu_no_Mi"),
+    # New World additions
+    ("hito_hito_nika",   "Hito_Hito_no_Mi,_Model:_Nika"),
+    ("uo_uo_seiryu",     "Uo_Uo_no_Mi,_Model:_Seiryu"),
+    ("inu_inu_makami",   "Inu_Inu_no_Mi,_Model:_Okuchi_no_Makami"),
+    ("mochi_mochi",      "Mochi_Mochi_no_Mi"),
+    ("soru_soru",        "Soru_Soru_no_Mi"),
+    ("gasu_gasu",        "Gasu_Gasu_no_Mi"),
+    ("ryu_ryu_ptero",    "Ryu_Ryu_no_Mi,_Model:_Pteranodon"),
 ]
 
 WIKI_BASE = "https://onepiece.fandom.com/wiki/"
@@ -305,6 +386,40 @@ def ingest_characters(model: SentenceTransformer, client: QdrantClient) -> int:
     return total
 
 
+def ingest_arcs(model: SentenceTransformer, client: QdrantClient) -> int:
+    total = 0
+    for arc_key, slug, arc_name in ARC_PAGES:
+        print(f"\n→ [arc] {arc_key} ({slug})")
+        text = scrape_page(slug)
+        if not text:
+            print(f"  [skip] no content")
+            continue
+
+        chunks = chunk_text(text)
+        print(f"  {len(chunks)} chunks")
+
+        embeddings = model.encode(chunks, show_progress_bar=False)
+        points = [
+            PointStruct(
+                id=str(uuid.uuid4()),
+                vector=emb.tolist(),
+                payload={
+                    "text": chunk,
+                    "type": "arc",
+                    "subject_key": arc_key,
+                    "arc_name": arc_name,
+                    "source_url": WIKI_BASE + slug,
+                },
+            )
+            for chunk, emb in zip(chunks, embeddings)
+        ]
+
+        client.upsert(COLLECTION_NAME, points=points)
+        total += len(points)
+        print(f"  ✓ {len(points)} points upserted")
+    return total
+
+
 def ingest_fruits(model: SentenceTransformer, client: QdrantClient) -> int:
     total = 0
     for fruit_key, slug in FRUIT_PAGES:
@@ -350,6 +465,7 @@ def ingest() -> None:
     total += ingest_locations(model, client)
     total += ingest_characters(model, client)
     total += ingest_fruits(model, client)
+    total += ingest_arcs(model, client)
 
     print(f"\nDone. Total vectors upserted this run: {total}")
 

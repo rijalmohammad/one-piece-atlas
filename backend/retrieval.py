@@ -100,6 +100,33 @@ async def stream_answer(location_key: str, question: str, context_chunks: list[s
             yield delta
 
 
+async def stream_answer_global_open(question: str, context_chunks: list[str]) -> AsyncGenerator[str, None]:
+    context = "\n\n---\n\n".join(context_chunks)
+    system_prompt = (
+        "You are a One Piece lore expert. Answer questions about any aspect of One Piece — "
+        "characters, locations, devil fruits, story arcs, history, or lore. "
+        "Be concise and accurate; cite chapter numbers when relevant. "
+        "If the answer isn't in the context, draw on your knowledge of One Piece lore.\n\n"
+        f"Context:\n{context}"
+    )
+
+    stream = get_groq().chat.completions.create(
+        model=os.getenv("GROQ_MODEL", "openai/gpt-oss-20b"),
+        messages=[
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": question},
+        ],
+        stream=True,
+        max_tokens=512,
+        temperature=0.3,
+    )
+
+    for chunk in stream:
+        delta = chunk.choices[0].delta.content
+        if delta:
+            yield delta
+
+
 async def stream_answer_global(subject: str, subject_type: str, question: str, context_chunks: list[str]) -> AsyncGenerator[str, None]:
     context = "\n\n---\n\n".join(context_chunks)
     system_prompt = (
