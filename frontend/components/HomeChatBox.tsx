@@ -92,6 +92,13 @@ export default function HomeChatBox() {
           return updated;
         });
       }
+      if (!accumulated) {
+        setMessages((prev) => {
+          const updated = [...prev];
+          updated[updated.length - 1] = { role: "ai", content: "The lore server didn't respond. This is usually a rate limit — please try again in a moment." };
+          return updated;
+        });
+      }
     } catch {
       setMessages((prev) => {
         const updated = [...prev];

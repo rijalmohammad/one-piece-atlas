@@ -53,7 +53,7 @@ export default function Home() {
   return (
     <>
       <nav className="topnav">
-        <span className="topnav-logo">☠ Grand Line Atlas</span>
+        <span className="topnav-logo">☠ One Piece Atlas</span>
         <div className="topnav-divider" />
         <div className="topnav-tabs">
           {([
@@ -162,7 +162,7 @@ export default function Home() {
           <div className="home-page">
             <div className="home-hero">
               <div className="home-hero-ghost">ONE PIECE</div>
-              <div className="home-hero-eyebrow">Grand Line Atlas</div>
+              <div className="home-hero-eyebrow">One Piece Atlas</div>
               <h1 className="home-hero-title">The World of One Piece</h1>
               <p className="home-hero-desc">
                 A complete lore reference for the One Piece universe — covering every island,

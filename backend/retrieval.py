@@ -74,6 +74,26 @@ def retrieve_context_subject(subject_key: str, entity_type: str, question: str, 
     return [r.payload["text"] for r in results if r.payload.get("text")]
 
 
+def _groq_stream(messages: list[dict], max_tokens: int = 512):
+    return get_groq().chat.completions.create(
+        model=os.getenv("GROQ_MODEL", "openai/gpt-oss-20b"),
+        messages=messages,
+        stream=True,
+        max_tokens=max_tokens,
+        temperature=0.3,
+    )
+
+
+async def _yield_stream(stream) -> AsyncGenerator[str, None]:
+    try:
+        for chunk in stream:
+            delta = chunk.choices[0].delta.content
+            if delta:
+                yield delta
+    except Exception as e:
+        yield f"\n\n*(Error from AI model: {e})*"
+
+
 async def stream_answer(location_key: str, question: str, context_chunks: list[str]) -> AsyncGenerator[str, None]:
     context = "\n\n---\n\n".join(context_chunks)
     system_prompt = (
@@ -82,22 +102,12 @@ async def stream_answer(location_key: str, question: str, context_chunks: list[s
         "when relevant. If the answer isn't in the context, say so — never invent details.\n\n"
         f"Context:\n{context}"
     )
-
-    stream = get_groq().chat.completions.create(
-        model=os.getenv("GROQ_MODEL", "openai/gpt-oss-20b"),
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": question},
-        ],
-        stream=True,
-        max_tokens=512,
-        temperature=0.3,
-    )
-
-    for chunk in stream:
-        delta = chunk.choices[0].delta.content
-        if delta:
-            yield delta
+    stream = _groq_stream([
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": question},
+    ])
+    async for token in _yield_stream(stream):
+        yield token
 
 
 async def stream_answer_global_open(question: str, context_chunks: list[str]) -> AsyncGenerator[str, None]:
@@ -109,22 +119,12 @@ async def stream_answer_global_open(question: str, context_chunks: list[str]) ->
         "If the answer isn't in the context, draw on your knowledge of One Piece lore.\n\n"
         f"Context:\n{context}"
     )
-
-    stream = get_groq().chat.completions.create(
-        model=os.getenv("GROQ_MODEL", "openai/gpt-oss-20b"),
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": question},
-        ],
-        stream=True,
-        max_tokens=512,
-        temperature=0.3,
-    )
-
-    for chunk in stream:
-        delta = chunk.choices[0].delta.content
-        if delta:
-            yield delta
+    stream = _groq_stream([
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": question},
+    ])
+    async for token in _yield_stream(stream):
+        yield token
 
 
 async def stream_answer_global(subject: str, subject_type: str, question: str, context_chunks: list[str]) -> AsyncGenerator[str, None]:
@@ -136,19 +136,9 @@ async def stream_answer_global(subject: str, subject_type: str, question: str, c
         "If the answer isn't in the context, draw on your knowledge of One Piece lore.\n\n"
         f"Context:\n{context}"
     )
-
-    stream = get_groq().chat.completions.create(
-        model=os.getenv("GROQ_MODEL", "openai/gpt-oss-20b"),
-        messages=[
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": question},
-        ],
-        stream=True,
-        max_tokens=512,
-        temperature=0.3,
-    )
-
-    for chunk in stream:
-        delta = chunk.choices[0].delta.content
-        if delta:
-            yield delta
+    stream = _groq_stream([
+        {"role": "system", "content": system_prompt},
+        {"role": "user", "content": question},
+    ])
+    async for token in _yield_stream(stream):
+        yield token

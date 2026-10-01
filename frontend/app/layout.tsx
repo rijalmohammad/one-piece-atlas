@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Grand Line Atlas",
+  title: "One Piece Atlas",
   description: "One Piece lore explorer — arc-grouped islands with RAG-powered chat",
 };
 

@@ -6,9 +6,15 @@ from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
-from retrieval import retrieve_context, retrieve_context_global, retrieve_context_subject, stream_answer, stream_answer_global, stream_answer_global_open
+from retrieval import retrieve_context, retrieve_context_global, retrieve_context_subject, stream_answer, stream_answer_global, stream_answer_global_open, get_model, get_qdrant
 
 app = FastAPI(title="One Piece Lore API", version="0.1.0")
+
+
+@app.on_event("startup")
+def preload():
+    get_model()
+    get_qdrant()
 
 app.add_middleware(
     CORSMiddleware,
