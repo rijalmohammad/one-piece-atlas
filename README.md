@@ -15,13 +15,13 @@ A full-stack lore reference for the One Piece series. Explore locations, charact
 
 - **Frontend**: Next.js (App Router), React, TypeScript, Tailwind
 - **Backend**: FastAPI
-- **Retrieval**: SentenceTransformers (`all-MiniLM-L6-v2`) embeddings stored in Qdrant
+- **Retrieval**: `all-MiniLM-L6-v2` embeddings stored in Qdrant (queries are embedded server-side by Qdrant Cloud Inference)
 - **LLM**: Groq (streaming)
 
 ## How the chat works
 
 1. `backend/ingest.py` scrapes One Piece wiki pages for locations, characters, devil fruits, and arcs, chunks the text, embeds it, and upserts it to Qdrant.
-2. At query time the backend embeds the question, retrieves the top matching chunks, and streams a grounded answer from Groq.
+2. At query time Qdrant embeds the question, the backend retrieves the top matching chunks, and streams a grounded answer from Groq.
 3. The Next.js API routes under `frontend/app/api` proxy requests to the backend.
 
 ## Project Structure
@@ -57,9 +57,10 @@ QDRANT_API_KEY=your-qdrant-api-key
 GROQ_API_KEY=your-groq-api-key
 ```
 
-Ingest the wiki content (run once; pages are cached in `data/raw`):
+Ingest the wiki content (run once; pages are cached in `data/raw`). Ingest embeds locally, so it needs the extra `sentence-transformers` dependency, which the deployed backend does not:
 
 ```bash
+pip install -r requirements-ingest.txt
 python ingest.py
 ```
 

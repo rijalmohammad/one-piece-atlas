@@ -95,7 +95,7 @@ export default function HomeChatBox() {
       if (!accumulated) {
         setMessages((prev) => {
           const updated = [...prev];
-          updated[updated.length - 1] = { role: "ai", content: "The lore server didn't respond. This is usually a rate limit — please try again in a moment." };
+          updated[updated.length - 1] = { role: "ai", content: "The lore server returned an empty answer. Please try again or rephrase your question." };
           return updated;
         });
       }
