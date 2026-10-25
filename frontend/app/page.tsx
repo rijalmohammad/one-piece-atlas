@@ -2,6 +2,7 @@
 
 import { useState, useCallback, lazy, Suspense, useEffect } from "react";
 import IslandCard from "@/components/IslandCard";
+import WorldMap from "@/components/WorldMap";
 import SidePanel from "@/components/SidePanel";
 import HomeChatBox from "@/components/HomeChatBox";
 import { ARC_GROUPS, LOCS, REGION_META } from "@/lib/locations";
@@ -27,6 +28,7 @@ export default function Home() {
   const [activeChar, setActiveChar]   = useState<Character | null>(null);
   const [activeFruit, setActiveFruit] = useState<DevilFruit | null>(null);
   const [theme, setTheme]             = useState<"dark" | "light">("dark");
+  const [mapView, setMapView]         = useState<"chart" | "cards">("chart");
   const [daily, setDaily]             = useState<{ char: Character; fruit: DevilFruit } | null>(null);
 
   useEffect(() => {
@@ -132,11 +134,26 @@ export default function Home() {
       >
         {activeTab === "map" && (
           <>
+            <div className="view-toggle" role="tablist" aria-label="Location view">
+              <button
+                className={mapView === "chart" ? "active" : ""}
+                onClick={() => setMapView("chart")}
+              >🧭 Sea Chart</button>
+              <button
+                className={mapView === "cards" ? "active" : ""}
+                onClick={() => setMapView("cards")}
+              >▦ Cards</button>
+            </div>
             {visibleRegions.map((regionKey) => {
               const meta = REGION_META[regionKey];
               const keys = (ARC_GROUPS[regionKey] ?? []).flatMap((g) => g.keys);
               return (
                 <div key={regionKey} className="region-section">
+                  {regionKey === "newworld" && filter === "all" && mapView === "chart" && (
+                    <div className="redline-divider" aria-hidden="true">
+                      <span>The Red Line</span>
+                    </div>
+                  )}
                   <div className={`region-hero ${meta.heroClass}`}>
                     <div className="hero-sea-label">{meta.label.toUpperCase()}</div>
                     <div className="region-hero-title">{meta.label}</div>
@@ -147,21 +164,25 @@ export default function Home() {
                       ))}
                     </div>
                   </div>
-                  <div className="islands-grid">
-                    {keys.map((key) => {
-                      const loc = LOCS[key];
-                      if (!loc) return null;
-                      return (
-                        <IslandCard
-                          key={key}
-                          locationKey={key}
-                          loc={loc}
-                          isActive={activeKey === key}
-                          onClick={() => openLoc(key)}
-                        />
-                      );
-                    })}
-                  </div>
+                  {mapView === "chart" ? (
+                    <WorldMap regionKey={regionKey} activeKey={activeKey} onSelect={openLoc} />
+                  ) : (
+                    <div className="islands-grid">
+                      {keys.map((key) => {
+                        const loc = LOCS[key];
+                        if (!loc) return null;
+                        return (
+                          <IslandCard
+                            key={key}
+                            locationKey={key}
+                            loc={loc}
+                            isActive={activeKey === key}
+                            onClick={() => openLoc(key)}
+                          />
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
               );
             })}
