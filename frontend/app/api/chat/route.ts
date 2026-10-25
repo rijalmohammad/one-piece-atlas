@@ -6,13 +6,12 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const location_key = searchParams.get("location_key");
   const question = searchParams.get("question");
-  const max_chapter = searchParams.get("max_chapter") ?? "9999";
 
   if (!location_key || !question) {
     return new Response("Missing location_key or question", { status: 400 });
   }
 
-  const params = new URLSearchParams({ location_key, question, max_chapter });
+  const params = new URLSearchParams({ location_key, question });
   const upstream = await fetch(`${BACKEND_URL}/query?${params}`, {
     method: "GET",
     headers: { Accept: "text/event-stream" },

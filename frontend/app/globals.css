@@ -153,20 +153,6 @@ body:has(.topnav) {
 .region-select option { background: #060f2e; color: #f5e6c8; font-family: sans-serif; letter-spacing: 0; }
 [data-theme="light"] .region-select option { background: #2C1A0E; color: #F5E6C8; }
 
-/* ── SPOILER SLIDER ───────────────────────────────────────────────────────── */
-.spoiler-control { display: flex; align-items: center; gap: 7px; }
-.spoiler-label { font-size: 11px; color: var(--nav-text); white-space: nowrap; letter-spacing: 0.03em; min-width: 90px; text-align: right; opacity: 0.65; }
-.chapter-slider {
-  -webkit-appearance: none; appearance: none;
-  width: 100px; height: 3px; border-radius: 2px;
-  background: var(--gold-dim); outline: none; cursor: pointer;
-}
-.chapter-slider::-webkit-slider-thumb {
-  -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%;
-  background: var(--gold); cursor: pointer;
-}
-.chapter-slider::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: none; cursor: pointer; }
-
 /* ── CONTENT AREA ─────────────────────────────────────────────────────────── */
 .content-area {
   position: fixed;
@@ -361,7 +347,7 @@ body:has(.topnav) {
 
 /* ── MOBILE ───────────────────────────────────────────────────────────────── */
 @media (max-width: 680px) {
-  .topnav-tabs, .topnav-divider, .spoiler-control { display: none; }
+  .topnav-tabs, .topnav-divider { display: none; }
   .content-area { padding: 14px 12px 20px; }
   .islands-grid { grid-template-columns: 1fr; gap: 8px; }
   .region-hero { padding: 15px 16px; margin-bottom: 16px; }

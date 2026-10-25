@@ -7,7 +7,6 @@ A full-stack lore reference for the One Piece series. Explore locations, charact
 - **Locations**: islands grouped by East Blue, Grand Line, and New World, with a per-location lore panel and chat
 - **Characters and Devil Fruits**: searchable, filterable browsers with detail panels and per-entity chat
 - **Arc Timeline**: vertical timeline from Romance Dawn to Egghead with manga chapter and anime episode ranges, plus a full story page for each arc
-- **Spoiler-safe slider**: hide location content above a chosen chapter
 - **Lore chat**: RAG-based Q&A over wiki content, streamed in real time
 - **Light and dark themes**
 

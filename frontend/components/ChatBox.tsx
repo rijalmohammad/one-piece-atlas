@@ -12,10 +12,9 @@ interface Message {
 interface Props {
   locationKey: string;
   greeting: string;
-  maxChapter: number;
 }
 
-export default function ChatBox({ locationKey, greeting, maxChapter }: Props) {
+export default function ChatBox({ locationKey, greeting }: Props) {
   const [messages, setMessages] = useState<Message[]>([
     { role: "ai", content: greeting },
   ]);
@@ -49,7 +48,6 @@ export default function ChatBox({ locationKey, greeting, maxChapter }: Props) {
       const params = new URLSearchParams({
         location_key: locationKey,
         question: q,
-        max_chapter: String(maxChapter),
       });
       const res = await fetch(
         `/api/chat?${params}`,

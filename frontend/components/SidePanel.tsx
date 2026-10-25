@@ -8,10 +8,9 @@ interface Props {
   locationKey: string | null;
   loc: Location | null;
   onClose: () => void;
-  maxChapter: number;
 }
 
-export default function SidePanel({ locationKey, loc, onClose, maxChapter }: Props) {
+export default function SidePanel({ locationKey, loc, onClose }: Props) {
   const isOpen = !!loc && !!locationKey;
 
   return (
@@ -47,7 +46,6 @@ export default function SidePanel({ locationKey, loc, onClose, maxChapter }: Pro
           <ChatBox
             locationKey={locationKey}
             greeting={loc.greeting}
-            maxChapter={maxChapter}
           />
         </>
       ) : null}

@@ -24,7 +24,6 @@ export default function Home() {
   const [activeTab, setActiveTab]     = useState<ActiveTab>("home");
   const [filter, setFilter]           = useState<string>("all");
   const [activeKey, setActiveKey]     = useState<string | null>(null);
-  const [maxChapter, setMaxChapter]   = useState(9999);
   const [activeChar, setActiveChar]   = useState<Character | null>(null);
   const [activeFruit, setActiveFruit] = useState<DevilFruit | null>(null);
   const [theme, setTheme]             = useState<"dark" | "light">("dark");
@@ -107,24 +106,6 @@ export default function Home() {
               ))}
             </select>
           )}
-          <div className="spoiler-control" title="Spoiler-safe: hide chapters above this number">
-            <label htmlFor="chapter-slider" className="spoiler-label">
-              {maxChapter >= 9999 ? "All chapters" : `Ch. ≤ ${maxChapter}`}
-            </label>
-            <input
-              id="chapter-slider"
-              type="range"
-              min={1}
-              max={1100}
-              step={1}
-              value={maxChapter >= 9999 ? 1100 : maxChapter}
-              onChange={(e) => {
-                const v = Number(e.target.value);
-                setMaxChapter(v >= 1100 ? 9999 : v);
-              }}
-              className="chapter-slider"
-            />
-          </div>
         </div>
       </nav>
 
@@ -323,7 +304,6 @@ export default function Home() {
         locationKey={activeTab === "map" ? activeKey : null}
         loc={activeTab === "map" ? activeLoc : null}
         onClose={closePanel}
-        maxChapter={maxChapter}
       />
 
       <Suspense fallback={null}>
