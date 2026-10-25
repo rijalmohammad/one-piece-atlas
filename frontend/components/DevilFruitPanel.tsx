@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { renderMarkdown, TypingDots } from "./Markdown";
 import { DevilFruit, TYPE_COLORS, TYPE_BORDER, TYPE_LABEL_COLOR } from "@/lib/devilfruits";
 import Link from "next/link";
 
@@ -121,12 +122,12 @@ export default function DevilFruitPanel({ fruit, onClose }: Props) {
               {messages.map((m, i) => (
                 <div key={i} className={`msg ${m.role === "user" ? "user" : "ai"}`}>
                   <div className={`msg-av ${m.role === "user" ? "usr" : "ai"}`}>
-                    {m.role === "ai" ? "☠" : "U"}
+                    {m.role === "ai" ? "🐌" : "U"}
                   </div>
                   <div className="bubble">
-                    {m.text || (m.role === "ai" && loading && i === messages.length - 1
-                      ? <span className="typing-dots">···</span>
-                      : m.text)}
+                    {m.text
+                      ? (m.role === "ai" ? renderMarkdown(m.text) : m.text)
+                      : (m.role === "ai" && loading && i === messages.length - 1 ? <TypingDots /> : null)}
                   </div>
                 </div>
               ))}

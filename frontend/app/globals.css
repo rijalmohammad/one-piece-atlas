@@ -1123,3 +1123,69 @@ body:has(.topnav) {
 @media (prefers-reduced-motion: reduce) {
   .home-compass, .home-stars, .home-wave { animation: none; }
 }
+
+/* ── CHAT POLISH ──────────────────────────────────────────────────────────── */
+.msg-av.ai { font-size: 13px; opacity: 1; }
+.typing-dots { display: inline-flex; gap: 4px; align-items: center; padding: 5px 2px; animation: none; }
+.typing-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); animation: dot-bounce 1s ease-in-out infinite; }
+.typing-dots i:nth-child(2) { animation-delay: 0.15s; }
+.typing-dots i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes dot-bounce { 0%, 60%, 100% { transform: translateY(0); opacity: 0.45; } 30% { transform: translateY(-5px); opacity: 1; } }
+
+.bubble ol { margin: 4px 0 6px 18px; padding: 0; }
+.bubble em { font-style: italic; }
+.bubble code { font-family: ui-monospace, Menlo, monospace; font-size: 0.92em; padding: 1px 5px; border-radius: 4px; background: var(--gold-dim); }
+.bubble .md-heading { font-family: 'Pirata One', cursive; font-weight: 400; font-size: 17px; letter-spacing: 0.04em; margin: 8px 0 4px; color: var(--gold); }
+.bubble hr { border: 0; border-top: 1px solid var(--card-border); margin: 8px 0; }
+.md-table-wrap { overflow-x: auto; margin: 6px 0; }
+.bubble table { border-collapse: collapse; font-size: 11.5px; width: 100%; }
+.bubble th, .bubble td { border: 1px solid var(--card-border); padding: 4px 8px; text-align: left; vertical-align: top; }
+.bubble th { background: var(--gold-dim); font-weight: 700; }
+@media (prefers-reduced-motion: reduce) { .typing-dots i { animation: none; } }
+
+/* ── ARC TIMELINE POLISH ──────────────────────────────────────────────────── */
+.vtl-line::after {
+  content: ""; position: absolute; left: 0; top: 0; width: 100%;
+  height: var(--vtl-progress, 0%);
+  background: var(--gold); box-shadow: 0 0 8px var(--gold);
+}
+.vtl-dot { transition: transform 0.3s ease; }
+.vtl-row.reached .vtl-dot { transform: scale(1.3); }
+
+.vtl-animate .vtl-row { transition: opacity 0.6s ease, transform 0.6s ease; }
+.vtl-animate .vtl-row:not(.in) { opacity: 0; transform: translateY(28px); }
+
+.vtl-saga-sticky {
+  position: sticky; top: 10px; z-index: 4; display: flex; justify-content: center;
+  margin: 6px 0 22px; pointer-events: none;
+}
+.vtl-saga-sticky span {
+  pointer-events: auto;
+  font-family: 'Pirata One', cursive; font-size: 20px; letter-spacing: 0.06em; line-height: 1;
+  padding: 5px 18px 6px; border-radius: 20px; border: 1px solid;
+  background: var(--bg);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.35);
+}
+[data-theme="light"] .vtl-saga-sticky span { box-shadow: 0 3px 10px rgba(26,107,160,0.2); }
+
+@media (max-width: 680px) {
+  .vtl-saga-sticky { justify-content: flex-start; padding-left: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .vtl-animate .vtl-row:not(.in) { opacity: 1; transform: none; }
+  .vtl-dot { transition: none; }
+}
+
+/* ── DEVIL FRUIT CARDS ────────────────────────────────────────────────────── */
+.df-card { position: relative; overflow: hidden; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.df-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.45), 0 0 22px color-mix(in srgb, var(--fc) 35%, transparent); }
+[data-theme="light"] .df-card:hover { box-shadow: 0 8px 20px rgba(26,107,160,0.22), 0 0 18px color-mix(in srgb, var(--fc) 30%, transparent); }
+.df-card > *:not(.df-swirl) { position: relative; z-index: 1; }
+.df-swirl {
+  position: absolute; right: -18px; top: -18px; width: 112px; height: 112px; z-index: 0;
+  color: var(--fc); opacity: 0.16; pointer-events: none; transition: transform 0.6s ease, opacity 0.3s;
+}
+[data-theme="light"] .df-swirl { filter: saturate(1.3) brightness(0.55); opacity: 0.2; }
+.df-card:hover .df-swirl { transform: rotate(120deg) scale(1.08); opacity: 0.3; }
+.df-ability-clamp { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+@media (prefers-reduced-motion: reduce) { .df-card, .df-swirl { transition: none; } .df-card:hover { transform: none; } }

@@ -1,49 +1,13 @@
 "use client";
 
 import { useState, useRef, useEffect, KeyboardEvent } from "react";
+import { renderMarkdown, TypingDots } from "./Markdown";
 
 interface Message {
   role: "ai" | "user";
   content: string;
 }
 
-function renderMarkdown(text: string) {
-  const lines = text.split("\n");
-  const elements: React.ReactNode[] = [];
-  let listItems: string[] = [];
-
-  function flushList() {
-    if (!listItems.length) return;
-    elements.push(
-      <ul key={elements.length}>
-        {listItems.map((item, i) => (
-          <li key={i} dangerouslySetInnerHTML={{ __html: boldify(item) }} />
-        ))}
-      </ul>
-    );
-    listItems = [];
-  }
-
-  function boldify(s: string) {
-    return s.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
-  }
-
-  for (const line of lines) {
-    const trimmed = line.trim();
-    if (/^[\*\-]\s+/.test(trimmed)) {
-      listItems.push(trimmed.replace(/^[\*\-]\s+/, ""));
-    } else {
-      flushList();
-      if (trimmed) {
-        elements.push(
-          <p key={elements.length} dangerouslySetInnerHTML={{ __html: boldify(trimmed) }} />
-        );
-      }
-    }
-  }
-  flushList();
-  return elements;
-}
 
 const SUGGESTIONS = [
   "Who is Gol D. Roger?",
@@ -132,12 +96,12 @@ export default function HomeChatBox() {
           {messages.map((msg, i) => (
             <div key={i} className={`msg ${msg.role}`}>
               <div className={`msg-av ${msg.role === "ai" ? "ai" : "usr"}`}>
-                {msg.role === "ai" ? "G" : "U"}
+                {msg.role === "ai" ? "🐌" : "U"}
               </div>
               <div className="bubble">
                 {msg.role === "ai" ? renderMarkdown(msg.content) : msg.content}
                 {loading && i === messages.length - 1 && msg.role === "ai" && msg.content === "" && (
-                  <span className="typing-dots">···</span>
+                  <TypingDots />
                 )}
               </div>
             </div>

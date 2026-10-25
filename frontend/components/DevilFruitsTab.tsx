@@ -80,9 +80,16 @@ export default function DevilFruitsTab({ onSelect, activeFruit }: Props) {
                 background: TYPE_COLORS[df.type],
                 borderColor: isActive ? "rgba(240,176,32,0.6)" : TYPE_BORDER[df.type],
                 cursor: "pointer",
+                ["--fc" as string]: TYPE_LABEL_COLOR[df.type],
               }}
               onClick={() => onSelect(df)}
             >
+              <svg className="df-swirl" viewBox="0 0 100 100" aria-hidden="true">
+                <path
+                  d="M50 50 a4 4 0 0 1 8 0 a8 8 0 0 1 -16 0 a14 14 0 0 1 28 0 a20 20 0 0 1 -40 0 a26 26 0 0 1 52 0 a32 32 0 0 1 -64 0"
+                  fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round"
+                />
+              </svg>
               <div className="df-card-header">
                 <div
                   className="df-user-av"
@@ -106,6 +113,8 @@ export default function DevilFruitsTab({ onSelect, activeFruit }: Props) {
                 <span className="df-user-label">User:</span>
                 <span className="df-user-name">{df.user}</span>
               </div>
+
+              <div className="df-ability df-ability-clamp">{df.ability}</div>
 
               <div className="df-debut">
                 Ch. {df.debutChapter} · {df.debutArc}
