@@ -4,16 +4,28 @@ import { useState } from "react";
 import {
   CHARACTERS,
   FACTIONS,
-  FACTION_COLORS,
-  FACTION_BORDER,
   Faction,
   Character,
 } from "@/lib/characters";
 
-const DF_TYPE_PILL: Record<string, string> = {
-  Paramecia: "#F0B020",
-  Zoan:      "#7FD47F",
-  Logia:     "#5BAAEE",
+const FACTION_INK: Record<Faction, string> = {
+  "Straw Hats":      "#B8321E",
+  "Marines":         "#1F4E9C",
+  "Warlords":        "#6B3A8C",
+  "Yonko":           "#9C2A1A",
+  "Antagonists":     "#5A1A1A",
+  "Allies":          "#1E7A66",
+  "Revolutionaries": "#2F7A3A",
+};
+
+const NO_BOUNTY_HEADER: Record<Faction, string> = {
+  "Straw Hats":      "CREW",
+  "Marines":         "MARINE",
+  "Warlords":        "WARLORD",
+  "Yonko":           "YONKO",
+  "Antagonists":     "UNLISTED",
+  "Allies":          "ALLY",
+  "Revolutionaries": "REVOLUTIONARY",
 };
 
 interface Props {
@@ -65,24 +77,27 @@ export default function CharactersTab({ onSelect, activeChar }: Props) {
       </div>
 
       <div className="char-grid">
-        {filtered.map((char) => {
+        {filtered.map((char, i) => {
           const isActive = activeChar?.name === char.name;
+          const ink = FACTION_INK[char.faction];
           return (
             <div
               key={char.name}
-              className={`char-card${isActive ? " active" : ""}`}
+              className={`wanted-card${isActive ? " active" : ""}`}
               style={{
-                background: FACTION_COLORS[char.faction],
-                borderColor: isActive ? "rgba(240,176,32,0.6)" : FACTION_BORDER[char.faction],
+                ["--ink" as string]: ink,
+                ["--tilt" as string]: `${((i % 5) - 2) * 0.45}deg`,
               }}
               onClick={() => onSelect(char)}
             >
-              <div className="char-card-header">
+              <div className="wanted-head">{char.bounty ? "WANTED" : NO_BOUNTY_HEADER[char.faction]}</div>
+
+              <div className="wanted-photo">
                 {char.imageFile ? (
                   <img
                     src={`/chars/${char.imageFile}`}
                     alt={char.name}
-                    className="char-card-img"
+                    className="wanted-img"
                     onError={(e) => {
                       const el = e.target as HTMLImageElement;
                       el.style.display = "none";
@@ -92,36 +107,28 @@ export default function CharactersTab({ onSelect, activeChar }: Props) {
                   />
                 ) : null}
                 <div
-                  className="char-card-av"
-                  style={{
-                    background: char.bg,
-                    color: char.color,
-                    display: char.imageFile ? "none" : "flex",
-                  }}
+                  className="wanted-initial"
+                  style={{ display: char.imageFile ? "none" : "flex" }}
                 >
                   {char.initial}
                 </div>
-                <div className="char-card-info">
-                  <div className="char-card-name">{char.name}</div>
-                  <div className="char-card-role">{char.role}</div>
-                </div>
+                <span className="wanted-stamp">{char.faction}</span>
               </div>
 
-              <div className="char-card-footer">
+              <div className="wanted-sub">{char.bounty ? "DEAD OR ALIVE" : char.role.toUpperCase()}</div>
+              <div className="wanted-name">{char.name}</div>
+              <div className="wanted-bounty">
+                {char.bounty ? <>฿ {char.bounty}</> : <span className="wanted-nobounty">No bounty</span>}
+              </div>
+
+              <div className="wanted-tags">
+                {char.bounty && <span className="wanted-tag">{char.role}</span>}
                 {char.devilFruit && (
-                  <span
-                    className="char-df-pill"
-                    style={{ color: DF_TYPE_PILL[char.devilFruitType!] ?? "#F0B020" }}
-                  >
+                  <span className="wanted-tag wanted-tag-fruit">
                     {char.devilFruitType} · {char.devilFruit}
                   </span>
                 )}
-                <span className="char-debut-pill">
-                  Ch. {char.debutChapter} — {char.debutArc}
-                </span>
-                {char.bounty && (
-                  <span className="char-bounty-pill">฿{char.bounty}</span>
-                )}
+                <span className="wanted-tag">Ch. {char.debutChapter}</span>
               </div>
             </div>
           );

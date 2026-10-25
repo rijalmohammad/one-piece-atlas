@@ -7,6 +7,7 @@ import HomeChatBox from "@/components/HomeChatBox";
 import { ARC_GROUPS, LOCS, REGION_META } from "@/lib/locations";
 import { CHARACTERS, Character } from "@/lib/characters";
 import { DEVIL_FRUITS, DevilFruit } from "@/lib/devilfruits";
+import { ARCS } from "@/lib/arcs";
 
 const CharactersTab   = lazy(() => import("@/components/CharactersTab"));
 const DevilFruitsTab  = lazy(() => import("@/components/DevilFruitsTab"));
@@ -26,6 +27,15 @@ export default function Home() {
   const [activeChar, setActiveChar]   = useState<Character | null>(null);
   const [activeFruit, setActiveFruit] = useState<DevilFruit | null>(null);
   const [theme, setTheme]             = useState<"dark" | "light">("dark");
+  const [daily, setDaily]             = useState<{ char: Character; fruit: DevilFruit } | null>(null);
+
+  useEffect(() => {
+    const day = Math.floor(Date.now() / 86400000);
+    setDaily({
+      char: CHARACTERS[day % CHARACTERS.length],
+      fruit: DEVIL_FRUITS[(day * 7 + 3) % DEVIL_FRUITS.length],
+    });
+  }, []);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -161,6 +171,14 @@ export default function Home() {
         {activeTab === "home" && (
           <div className="home-page">
             <div className="home-hero">
+              <div className="home-stars" aria-hidden="true" />
+              <svg className="home-compass" viewBox="0 0 200 200" aria-hidden="true">
+                <circle cx="100" cy="100" r="92" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                <circle cx="100" cy="100" r="76" fill="none" stroke="currentColor" strokeWidth="0.75" strokeDasharray="2 5" />
+                <path d="M100 8 L112 88 L192 100 L112 112 L100 192 L88 112 L8 100 L88 88 Z" fill="currentColor" opacity="0.55" />
+                <path d="M100 34 L106 94 L166 100 L106 106 L100 166 L94 106 L34 100 L94 94 Z" fill="none" stroke="currentColor" strokeWidth="1" />
+                <circle cx="100" cy="100" r="6" fill="currentColor" />
+              </svg>
               <div className="home-hero-ghost">ONE PIECE</div>
               <div className="home-hero-eyebrow">One Piece Atlas</div>
               <h1 className="home-hero-title">The World of One Piece</h1>
@@ -175,7 +193,76 @@ export default function Home() {
                 <button className="home-pill" onClick={() => setActiveTab("devilfruits")}>🍎 Devil Fruits</button>
                 <button className="home-pill" onClick={() => setActiveTab("timeline")}>📜 Arc Timeline</button>
               </div>
+              <div className="home-sea" aria-hidden="true">
+                <svg className="home-wave home-wave-back" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                  <path d="M0 30 Q75 4 150 30 T300 30 T450 30 T600 30 T750 30 T900 30 T1050 30 T1200 30 V60 H0 Z" />
+                </svg>
+                <svg className="home-wave home-wave-front" viewBox="0 0 1200 60" preserveAspectRatio="none">
+                  <path d="M0 34 Q75 10 150 34 T300 34 T450 34 T600 34 T750 34 T900 34 T1050 34 T1200 34 V60 H0 Z" />
+                </svg>
+              </div>
             </div>
+
+            <div className="home-stats">
+              {([
+                [Object.keys(LOCS).length, "Islands", "map"],
+                [CHARACTERS.length, "Characters", "characters"],
+                [DEVIL_FRUITS.length, "Devil Fruits", "devilfruits"],
+                [ARCS.length, "Story Arcs", "timeline"],
+              ] as [number, string, ActiveTab][]).map(([n, label, tab]) => (
+                <button key={label} className="home-stat" onClick={() => setActiveTab(tab)}>
+                  <span className="home-stat-num">{n}</span>
+                  <span className="home-stat-label">{label}</span>
+                </button>
+              ))}
+            </div>
+
+            {daily && (
+              <div className="home-daily">
+                <button
+                  className="home-daily-card"
+                  onClick={() => { setActiveTab("characters"); openChar(daily.char); }}
+                >
+                  <span className="home-daily-label">Character of the Day</span>
+                  <span className="home-daily-body">
+                    {daily.char.imageFile ? (
+                      <img className="home-daily-img" src={`/chars/${daily.char.imageFile}`} alt="" />
+                    ) : (
+                      <span className="home-daily-img home-daily-initial">{daily.char.initial}</span>
+                    )}
+                    <span className="home-daily-text">
+                      <span className="home-daily-name">{daily.char.name}</span>
+                      <span className="home-daily-meta">
+                        {daily.char.faction} · {daily.char.role}
+                      </span>
+                      {daily.char.bounty && <span className="home-daily-bounty">฿ {daily.char.bounty}</span>}
+                    </span>
+                  </span>
+                </button>
+                <button
+                  className="home-daily-card"
+                  onClick={() => { setActiveTab("devilfruits"); openFruit(daily.fruit); }}
+                >
+                  <span className="home-daily-label">Devil Fruit of the Day</span>
+                  <span className="home-daily-body">
+                    <span
+                      className="home-daily-img home-daily-initial"
+                      style={{ color: daily.fruit.userColor }}
+                    >
+                      🍎
+                    </span>
+                    <span className="home-daily-text">
+                      <span className="home-daily-name">{daily.fruit.name}</span>
+                      <span className="home-daily-meta">
+                        {daily.fruit.type} · {daily.fruit.user}
+                      </span>
+                      <span className="home-daily-meta">{daily.fruit.englishName}</span>
+                    </span>
+                  </span>
+                </button>
+              </div>
+            )}
+
             <div className="home-chat-section">
               <div className="home-chat-label">Ask the Grand Line Oracle</div>
               <div className="home-chat-sub">Ask anything about One Piece lore, characters, history, or devil fruits.</div>

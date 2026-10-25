@@ -118,10 +118,10 @@ body:has(.topnav) {
 .topnav-divider { width: 1px; height: 20px; background: var(--nav-border); flex-shrink: 0; }
 .topnav-tabs { display: flex; gap: 2px; }
 .topnav-tab {
-  padding: 5px 12px; border-radius: 4px; font-size: 12px;
-  letter-spacing: 0.04em; color: var(--text-dim);
+  padding: 4px 12px; border-radius: 4px; font-size: 15px;
+  letter-spacing: 0.06em; color: var(--text-dim);
   cursor: pointer; border: none; background: none;
-  font-family: 'Lato', sans-serif; transition: all 0.15s; white-space: nowrap;
+  font-family: 'Pirata One', cursive; transition: all 0.15s; white-space: nowrap;
 }
 .topnav-tab.active { background: rgba(218,165,32,0.1); color: var(--gold); }
 [data-theme="light"] .topnav-tab { color: rgba(245,230,200,0.65); }
@@ -242,7 +242,7 @@ body:has(.topnav) {
   pointer-events: none; white-space: nowrap;
 }
 [data-theme="light"] .hero-sea-label { opacity: 0.07; }
-.region-hero-title { font-family: 'Cinzel', serif; font-size: 21px; font-weight: 700; color: var(--parchment); letter-spacing: 0.06em; margin-bottom: 5px; position: relative; }
+.region-hero-title { font-family: 'Pirata One', cursive; font-weight: 400; font-size: 30px; color: var(--parchment); letter-spacing: 0.06em; margin-bottom: 5px; position: relative; }
 .region-hero-sub { font-size: 11px; color: var(--text-dim); letter-spacing: 0.07em; position: relative; }
 .hero-tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; position: relative; }
 .hero-tag { font-size: 10px; padding: 2px 9px; border-radius: 12px; background: var(--gold-dim); border: 1px solid var(--card-border); color: var(--parchment); opacity: 0.85; letter-spacing: 0.04em; }
@@ -281,7 +281,7 @@ body:has(.topnav) {
 .card-icon svg { width: 100%; height: 100%; display: block; }
 .card-body { flex: 1; min-width: 0; }
 .card-eyebrow { font-size: 9px; letter-spacing: 0.09em; color: var(--text-dim); text-transform: uppercase; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.card-title { font-family: 'Cinzel', serif; font-size: 12.5px; font-weight: 600; color: var(--parchment); line-height: 1.25; margin-bottom: 5px; }
+.card-title { font-family: 'Pirata One', cursive; font-weight: 400; font-size: 15.5px; color: var(--parchment); line-height: 1.25; margin-bottom: 5px; }
 .card-lore { font-size: 10.5px; line-height: 1.55; color: var(--text-dim); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 7px; opacity: 0.85; }
 .card-chars { display: flex; gap: 4px; flex-wrap: wrap; }
 .card-char-av { width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 700; }
@@ -301,7 +301,7 @@ body:has(.topnav) {
 .panel-handle { display: none; width: 36px; height: 4px; border-radius: 2px; background: var(--gold-dim); margin: 10px auto 0; flex-shrink: 0; }
 .panel-header { padding: 16px 20px 12px; border-bottom: 1px solid var(--panel-border); flex-shrink: 0; position: relative; }
 .panel-eyebrow { font-size: 10px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; margin-bottom: 4px; }
-.panel-title { font-family: 'Cinzel', serif; font-size: 19px; font-weight: 700; color: var(--parchment); line-height: 1.2; }
+.panel-title { font-family: 'Pirata One', cursive; font-weight: 400; font-size: 25px; color: var(--parchment); line-height: 1.2; }
 .panel-tags { display: flex; gap: 5px; margin-top: 8px; flex-wrap: wrap; }
 .tag { padding: 2px 7px; border-radius: 3px; font-size: 10px; letter-spacing: 0.04em; background: var(--gold-dim); color: var(--parchment); border: 1px solid var(--card-border); opacity: 0.85; }
 .panel-close { position: absolute; top: 13px; right: 13px; width: 26px; height: 26px; border-radius: 4px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); color: var(--text-dim); cursor: pointer; font-size: 12px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
@@ -365,7 +365,7 @@ body:has(.topnav) {
   .content-area { padding: 14px 12px 20px; }
   .islands-grid { grid-template-columns: 1fr; gap: 8px; }
   .region-hero { padding: 15px 16px; margin-bottom: 16px; }
-  .region-hero-title { font-size: 18px; }
+  .region-hero-title { font-size: 25px; }
   .hero-sea-label { font-size: 28px; }
   .side-panel {
     width: 100%; right: 0; left: 0;
@@ -449,7 +449,7 @@ body:has(.topnav) {
   border: 1px solid transparent;
 }
 .df-card-names { flex: 1; min-width: 0; }
-.df-name         { font-family: 'Cinzel', serif; font-size: 12.5px; font-weight: 600; color: var(--parchment); }
+.df-name         { font-family: 'Pirata One', cursive; font-weight: 400; font-size: 15.5px; color: var(--parchment); }
 .df-english-name { font-size: 10.5px; color: var(--text-dim); margin-top: 1px; }
 .df-type-badge {
   font-size: 10px; padding: 2px 7px; border-radius: 10px; flex-shrink: 0; white-space: nowrap;
@@ -610,7 +610,7 @@ body:has(.topnav) {
 }
 .detail-hero-info { flex: 1; }
 .detail-eyebrow { font-size: 11px; letter-spacing: 0.12em; color: var(--gold); text-transform: uppercase; margin-bottom: 4px; }
-.detail-title   { font-family: 'Cinzel', serif; font-size: 28px; font-weight: 700; color: var(--parchment); line-height: 1.2; }
+.detail-title   { font-family: 'Pirata One', cursive; font-weight: 400; font-size: 38px; color: var(--parchment); line-height: 1.2; }
 .detail-role    { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
 .detail-tags    { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
 .detail-tag     { font-size: 10px; padding: 2px 9px; border-radius: 12px; background: var(--gold-dim); border: 1px solid var(--card-border); color: var(--parchment); opacity: 0.85; }
@@ -701,8 +701,8 @@ body:has(.topnav) {
   text-transform: uppercase; margin-bottom: 14px; position: relative;
 }
 .home-hero-title {
-  font-family: 'Cinzel', serif; font-size: 32px; font-weight: 700;
-  color: var(--parchment); letter-spacing: 0.06em;
+  font-family: 'Pirata One', cursive; font-weight: 400; font-size: 54px;
+  color: var(--parchment); letter-spacing: 0.04em; line-height: 1.05;
   margin: 0 0 18px; position: relative;
 }
 .home-hero-desc {
@@ -721,7 +721,7 @@ body:has(.topnav) {
 
 .home-chat-section { }
 .home-chat-label {
-  font-family: 'Cinzel', serif; font-size: 16px; color: var(--parchment);
+  font-family: 'Pirata One', cursive; font-weight: 400; font-size: 26px; color: var(--parchment);
   margin-bottom: 6px; letter-spacing: 0.05em;
 }
 .home-chat-sub { font-size: 12px; color: var(--text-dim); margin-bottom: 18px; }
@@ -745,7 +745,7 @@ body:has(.topnav) {
 
 @media (max-width: 680px) {
   .home-hero { padding: 40px 20px 36px; }
-  .home-hero-title { font-size: 24px; }
+  .home-hero-title { font-size: 38px; }
   .home-hero-ghost { font-size: 48px; }
 }
 
@@ -835,8 +835,8 @@ body:has(.topnav) {
 }
 
 .vtl-arc-name {
-  font-family: 'Cinzel', serif; font-size: 14px; font-weight: 700;
-  color: var(--parchment); line-height: 1.25; margin: 0;
+  font-family: 'Pirata One', cursive; font-weight: 400; font-size: 20px;
+  color: var(--parchment); line-height: 1.2; margin: 0;
 }
 
 .vtl-meta {
@@ -909,8 +909,8 @@ body:has(.topnav) {
   margin-bottom: 12px;
 }
 .arc-detail-title {
-  font-family: 'Cinzel', serif; font-size: 30px; font-weight: 700;
-  color: var(--parchment); line-height: 1.2; margin: 0 0 8px;
+  font-family: 'Pirata One', cursive; font-weight: 400; font-size: 46px;
+  color: var(--parchment); line-height: 1.1; margin: 0 0 8px;
 }
 .arc-detail-timeskip {
   display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 10px;
@@ -981,4 +981,145 @@ body:has(.topnav) {
   .arc-detail-nav-row { flex-direction: column; }
   .arc-detail-nav-link { max-width: 100%; }
   .arc-detail-nav-next { align-items: flex-start; }
+}
+
+/* ── WANTED POSTERS (characters) ──────────────────────────────────────────── */
+.char-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 22px 18px; padding: 8px 4px 24px; }
+
+.wanted-card {
+  --paper: #E8D5A0;
+  --ink-dark: #2A1A08;
+  position: relative; cursor: pointer; text-align: center;
+  display: flex; flex-direction: column; gap: 5px;
+  padding: 16px 12px 14px;
+  color: var(--ink-dark);
+  background:
+    radial-gradient(ellipse at 18% 12%, rgba(255,255,255,0.4), transparent 55%),
+    radial-gradient(ellipse at 88% 92%, rgba(130,80,15,0.3), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .38 0 0 0 0 .24 0 0 0 0 .06 0 0 0 .26 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    var(--paper);
+  border: 2px solid #8A6A2F; border-radius: 3px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.5), inset 0 0 30px rgba(120,80,20,0.4);
+  transform: rotate(var(--tilt, 0deg));
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+[data-theme="light"] .wanted-card { border-color: #7A5A20; box-shadow: 0 8px 16px rgba(60,40,10,0.35), inset 0 0 30px rgba(120,80,20,0.4); }
+.wanted-card::before {
+  content: ""; position: absolute; top: 5px; left: 50%; width: 9px; height: 9px; margin-left: -4.5px;
+  border-radius: 50%; background: radial-gradient(circle at 35% 30%, #d9d4c8, #4a4338 70%);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.6);
+}
+.wanted-card:hover { transform: rotate(0deg) translateY(-7px) scale(1.035); z-index: 2; box-shadow: 0 16px 30px rgba(0,0,0,0.55), inset 0 0 30px rgba(120,80,20,0.4); }
+.wanted-card.active { outline: 3px solid var(--gold); outline-offset: 3px; }
+
+.wanted-head {
+  font-family: 'Pirata One', cursive; font-weight: 400;
+  font-size: 34px; line-height: 1; letter-spacing: 0.14em; margin-top: 4px; color: var(--ink-dark);
+}
+.wanted-photo {
+  position: relative; aspect-ratio: 4 / 5; overflow: hidden;
+  background: rgba(70,45,10,0.18); border: 3px solid #3A2810; box-shadow: inset 0 0 0 2px rgba(232,213,160,0.7);
+}
+.wanted-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; filter: sepia(0.35) contrast(1.05); }
+.wanted-initial {
+  position: absolute; inset: 0; align-items: center; justify-content: center;
+  font-family: 'Pirata One', cursive; font-size: 72px; color: var(--ink);
+}
+.wanted-stamp {
+  position: absolute; right: 6px; bottom: 8px; transform: rotate(-8deg);
+  font-family: 'Cinzel', serif; font-weight: 700; font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--ink); border: 2px solid var(--ink); border-radius: 3px; padding: 2px 6px;
+  background: rgba(232,213,160,0.88);
+}
+.wanted-sub { font-family: 'Cinzel', serif; font-weight: 700; font-size: 10px; letter-spacing: 0.2em; margin-top: 2px; }
+.wanted-name {
+  font-family: 'Pirata One', cursive; font-weight: 400; font-size: 23px; line-height: 1.05;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.wanted-bounty { font-family: 'Pirata One', cursive; font-size: 24px; line-height: 1.1; color: #3A1A08; letter-spacing: 0.03em; min-height: 26px; }
+.wanted-nobounty { font-family: 'Lato', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.55; }
+.wanted-tags { display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; margin-top: auto; padding-top: 6px; }
+.wanted-tag {
+  font-size: 10px; padding: 1px 7px; border-radius: 10px; color: var(--ink-dark);
+  background: rgba(255,255,255,0.3); border: 1px solid rgba(42,26,8,0.45);
+}
+.wanted-tag-fruit { border-color: var(--ink); color: var(--ink); font-weight: 700; }
+
+@media (max-width: 680px) {
+  .char-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 12px; }
+  .wanted-card { padding: 14px 8px 10px; transform: rotate(calc(var(--tilt, 0deg) * 0.5)); }
+  .wanted-head { font-size: 25px; }
+  .wanted-name { font-size: 18px; }
+  .wanted-bounty { font-size: 18px; min-height: 20px; }
+  .wanted-initial { font-size: 54px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wanted-card, .wanted-card:hover { transition: none; }
+}
+
+/* ── HOME: animated hero, stats, daily picks ──────────────────────────────── */
+.home-hero { padding-bottom: 92px; }
+.home-hero-eyebrow { font-family: 'Pirata One', cursive; font-size: 15px; letter-spacing: 0.3em; }
+
+.home-compass {
+  position: absolute; right: -50px; top: -50px; width: 270px; height: 270px;
+  color: var(--gold); opacity: 0.14; pointer-events: none;
+  animation: compass-spin 120s linear infinite;
+}
+.home-stars {
+  position: absolute; top: 14px; left: 18px; width: 2px; height: 2px; border-radius: 50%;
+  background: #fff; pointer-events: none;
+  box-shadow:
+    60px 20px 0 #fff, 140px 64px 0 rgba(255,255,255,0.7), 230px 18px 0 #fff, 330px 52px 0 rgba(255,255,255,0.6),
+    410px 14px 0 #fff, 520px 70px 0 rgba(255,255,255,0.8), 610px 26px 0 #fff, 700px 58px 0 rgba(255,255,255,0.6),
+    90px 120px 0 rgba(255,255,255,0.5), 300px 130px 0 rgba(255,255,255,0.7), 470px 140px 0 rgba(255,255,255,0.5);
+  animation: star-twinkle 4s ease-in-out infinite;
+}
+[data-theme="light"] .home-stars { display: none; }
+
+.home-sea { position: absolute; left: 0; right: 0; bottom: 0; height: 74px; pointer-events: none; overflow: hidden; }
+.home-wave { position: absolute; bottom: 0; left: 0; width: 200%; height: 58px; }
+.home-wave-back  { fill: rgba(26,107,160,0.35); animation: wave-slide 26s linear infinite; bottom: 8px; }
+.home-wave-front { fill: rgba(10,50,130,0.55); animation: wave-slide 16s linear infinite reverse; }
+[data-theme="light"] .home-wave-back  { fill: rgba(30,140,200,0.4); }
+[data-theme="light"] .home-wave-front { fill: rgba(14,86,160,0.6); }
+
+@keyframes compass-spin { to { transform: rotate(360deg); } }
+@keyframes star-twinkle { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+@keyframes wave-slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+.home-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 18px; }
+.home-stat {
+  display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 14px 8px; cursor: pointer;
+  background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px;
+  transition: transform 0.18s, border-color 0.18s;
+}
+.home-stat:hover { transform: translateY(-3px); border-color: var(--gold); }
+.home-stat-num { font-family: 'Pirata One', cursive; font-size: 34px; line-height: 1; color: var(--gold); }
+.home-stat-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-dim); }
+
+.home-daily { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 40px; }
+.home-daily-card {
+  display: flex; flex-direction: column; gap: 10px; text-align: left; cursor: pointer; padding: 14px 16px;
+  background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; color: var(--parchment);
+  transition: transform 0.18s, border-color 0.18s;
+}
+.home-daily-card:hover { transform: translateY(-3px); border-color: var(--gold); }
+.home-daily-label { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); }
+.home-daily-body { display: flex; align-items: center; gap: 12px; }
+.home-daily-img { width: 54px; height: 70px; border-radius: 6px; object-fit: cover; object-position: top; flex-shrink: 0; border: 1px solid var(--card-border); }
+.home-daily-initial { display: flex; align-items: center; justify-content: center; font-size: 28px; background: var(--bubble-ai); }
+.home-daily-text { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.home-daily-name { font-family: 'Pirata One', cursive; font-size: 21px; line-height: 1.1; }
+.home-daily-meta { font-size: 11px; color: var(--text-dim); }
+.home-daily-bounty { font-family: 'Pirata One', cursive; font-size: 16px; color: var(--gold); }
+
+@media (max-width: 680px) {
+  .home-hero { padding-bottom: 84px; }
+  .home-compass { width: 190px; height: 190px; right: -50px; top: -40px; }
+  .home-stats { grid-template-columns: repeat(2, 1fr); }
+  .home-daily { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .home-compass, .home-stars, .home-wave { animation: none; }
 }
